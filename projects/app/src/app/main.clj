@@ -3,7 +3,7 @@
 
 
 (def dynjob
-  (let [job {:docker {:image "clojure:tools-deps"}
+  (let [job {:docker [{:image "clojure:tools-deps"}]
              :steps  ["checkout"]}]
     {:version   "2.1"
      :jobs      {:build (update job :steps conj {:run "echo hello"})
