@@ -1,23 +1,20 @@
 version: 2.1
+setup: true
 
-# Define the jobs we want to run for this project
 jobs:
-  build:
+  setup:
     docker:
       - image: clojure:tools-deps
     steps:
       - checkout
-      - run: echo "this is the build job"
-  test:
-    docker:
-      - image: clojure:tools-deps
-    steps:
-      - checkout
-      - run: echo "this is the test job"
+      - run:
+          name: Generate config
+          command: |
+            cd projects/app && clojure -M --report stderr -m app.main > generated_config.yml
+      - continuation/continue:
+          configuration_path: projects/app/generated_config.yml
 
-# Orchestrate our job run sequence
 workflows:
-  build_and_test:
+  setup:
     jobs:
-      - build
-      - test
+      - setup
