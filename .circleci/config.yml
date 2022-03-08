@@ -11,7 +11,7 @@ jobs:
       - image: clojure:tools-deps
     steps:
       - checkout
-      - run: "apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*"
+      - run: "apt-get update && apt-get install -y curl jq && rm -rf /var/lib/apt/lists/*"
       - run:
           name: Generate config
           command: |
