@@ -1,0 +1,4 @@
+{:paths   ["src"]
+ :deps    {org.clojure/clojure  {:mvn/version "1.10.3"}
+           clj-commons/clj-yaml {:mvn/version "0.7.108"}}
+ :aliases {:dev {:extra-paths ["dev" "test"]}}}
